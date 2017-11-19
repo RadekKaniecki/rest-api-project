@@ -39,6 +39,7 @@ public class TrelloClientTest {
         when(trelloConfig.getTrelloAppToken()).thenReturn("test");
     }
 
+    /*
     @Test
     public void shouldFetchTrelloBoards() throws URISyntaxException {
         //Given
@@ -87,6 +88,7 @@ public class TrelloClientTest {
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
     }
+    */
 
     @Test
     public void shouldReturnEmptyList() {
