@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class TrelloList {
-    private String id;
     private String name;
+    private String id;
     private boolean isClosed;
 }
