@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -23,58 +24,70 @@ public class TrelloMapperTestSuite {
     public void mapToBoardsTest() {
         //Given
         List<TrelloListDto> trelloListDto = new ArrayList<>();
-        trelloListDto.add(new TrelloListDto("Trello List Dto test", "1", true));
+        trelloListDto.add(new TrelloListDto("1", "Trello List Dto test", true));
 
         List<TrelloBoardDto> trelloBoardDtos = new ArrayList<>();
-        trelloBoardDtos.add(new TrelloBoardDto("Trello Board Dto test", "1", trelloListDto));
+        trelloBoardDtos.add(new TrelloBoardDto("1", "Trello Board Dto test", trelloListDto));
 
         //When
         List<TrelloBoard> trelloBoards = trelloMapper.mapToBoards(trelloBoardDtos);
 
         //Then
-        assertEquals(trelloBoardDtos, trelloBoards);
+        assertEquals(trelloBoardDtos.get(0).getId(), trelloBoards.get(0).getId());
+        assertEquals(trelloBoardDtos.get(0).getName(), trelloBoards.get(0).getName());
+        assertEquals(trelloBoardDtos.get(0).getLists().get(0).getId(), trelloBoards.get(0).getLists().get(0).getId());
+        assertEquals(trelloBoardDtos.get(0).getLists().get(0).getName(), trelloBoards.get(0).getLists().get(0).getName());
+        assertEquals(trelloBoardDtos.get(0).getLists().get(0).isClosed(), trelloBoards.get(0).getLists().get(0).isClosed());
     }
 
     @Test
     public void mapToBoardsDto() {
         //Given
         List<TrelloList> trelloList = new ArrayList<>();
-        trelloList.add(new TrelloList("Trello List test", "1", true));
+        trelloList.add(new TrelloList("1", "Trello List test", true));
 
         List<TrelloBoard> trelloBoards = new ArrayList<>();
-        trelloBoards.add(new TrelloBoard("Trello Board test", "1", trelloList));
+        trelloBoards.add(new TrelloBoard("1", "Trello Board test", trelloList));
 
         //When
         List<TrelloBoardDto> trelloBoardDtos = trelloMapper.mapToBoardsDto(trelloBoards);
 
         //Then
-        assertEquals(trelloBoards, trelloBoardDtos);
+        assertEquals(trelloBoards.get(0).getId(), trelloBoardDtos.get(0).getId());
+        assertEquals(trelloBoards.get(0).getName(), trelloBoardDtos.get(0).getName());
+        assertEquals(trelloBoards.get(0).getLists().get(0).getId(), trelloBoardDtos.get(0).getLists().get(0).getId());
+        assertEquals(trelloBoards.get(0).getLists().get(0).getName(), trelloBoardDtos.get(0).getLists().get(0).getName());
+        assertEquals(trelloBoards.get(0).getLists().get(0).isClosed(), trelloBoardDtos.get(0).getLists().get(0).isClosed());
     }
 
     @Test
     public void mapToList() {
         //Given
         List<TrelloListDto> trelloListDto = new ArrayList<>();
-        trelloListDto.add(new TrelloListDto("Trello List Dto test", "1", true));
+        trelloListDto.add(new TrelloListDto("1", "Trello List Dto test", true));
 
         //When
         List<TrelloList> trelloLists = trelloMapper.mapToList(trelloListDto);
 
         //Then
-        assertEquals(trelloListDto, trelloLists);
+        assertEquals(trelloListDto.get(0).getId(), trelloLists.get(0).getId());
+        assertEquals(trelloListDto.get(0).getName(), trelloLists.get(0).getName());
+        assertEquals(trelloListDto.get(0).isClosed(), trelloLists.get(0).isClosed());
     }
 
     @Test
     public void mapToListDto() {
         //Given
         List<TrelloList> trelloList = new ArrayList<>();
-        trelloList.add(new TrelloList("Trello List test", "1", true));
+        trelloList.add(new TrelloList("1", "Trello List test", true));
 
         //When
         List<TrelloListDto> trelloListDtos = trelloMapper.mapToListDto(trelloList);
 
         //Then
-        assertEquals(trelloList, trelloListDtos);
+        assertEquals(trelloList.get(0).getId(), trelloListDtos.get(0).getId());
+        assertEquals(trelloList.get(0).getName(), trelloListDtos.get(0).getName());
+        assertEquals(trelloList.get(0).isClosed(), trelloListDtos.get(0).isClosed());
     }
 
     @Test
@@ -86,7 +99,10 @@ public class TrelloMapperTestSuite {
         TrelloCardDto trelloCardDto = trelloMapper.mapToCardDto(trelloCard);
 
         //Then
-        assertEquals(trelloCard, trelloCardDto);
+        assertEquals(trelloCard.getName(), trelloCardDto.getName());
+        assertEquals(trelloCard.getDescription(), trelloCardDto.getDescription());
+        assertEquals(trelloCard.getPos(), trelloCardDto.getPos());
+        assertEquals(trelloCard.getListId(), trelloCardDto.getListId());
     }
 
     @Test
@@ -98,6 +114,9 @@ public class TrelloMapperTestSuite {
         TrelloCard trelloCard = trelloMapper.mapToCard(trelloCardDto);
 
         //Then
-        assertEquals(trelloCardDto, trelloCard);
+        assertEquals(trelloCardDto.getName(), trelloCard.getName());
+        assertEquals(trelloCardDto.getDescription(), trelloCard.getDescription());
+        assertEquals(trelloCardDto.getPos(), trelloCard.getPos());
+        assertEquals(trelloCardDto.getListId(), trelloCard.getListId());
     }
 }

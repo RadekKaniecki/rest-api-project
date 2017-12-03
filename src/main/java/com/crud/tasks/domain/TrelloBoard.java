@@ -5,10 +5,10 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Getter
 @AllArgsConstructor
+@Getter
 public class TrelloBoard {
-    private String name;
     private String id;
+    private String name;
     private List<TrelloList> lists;
 }
