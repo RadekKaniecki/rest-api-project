@@ -45,7 +45,7 @@ public class TrelloClientTest {
     public void shouldFetchTrelloBoards() throws URISyntaxException {
         //Given
         TrelloBoardDto[] trelloBoard = new TrelloBoardDto[1];
-        trelloBoard[0] = new TrelloBoardDto("test_board", "test_id", new ArrayList<>());
+        trelloBoard[0] = new TrelloBoardDto("test_id", "test_board", new ArrayList<>());
 
         URI uri = new URI("http://test.com/members/radek397/boards?key=test&token=test&fields=name,id&lists=all");
 
