@@ -95,6 +95,7 @@ public class TaskControllerTest {
         Task task = new Task(1L, "test title", "test content");
         TaskDto taskDto = new TaskDto(task.getId(), task.getTitle(), task.getContent());
 
+        when(taskMapper.mapToTask(any(TaskDto.class))).thenReturn(task);
         when(dbService.saveTask(any(Task.class))).thenReturn(task);
         when(taskMapper.mapToTaskDto(any(Task.class))).thenReturn(taskDto);
         Gson gson = new Gson();
