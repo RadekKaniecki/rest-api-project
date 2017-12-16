@@ -22,11 +22,12 @@ public class MailCreatorService {
         context.setVariable("tasks_url", "https://radekkaniecki.github.io/");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
-        context.setVariable("company_details",
-                            adminConfig.getCompanyName() + "\n" + adminConfig.getStreet() + "\n" + adminConfig.getBuildingNumber()
-                                    + "\n" + adminConfig.getPhoneNumber());
+        context.setVariable("company_name",adminConfig.getCompanyName());
+        context.setVariable("company_street", adminConfig.getStreet());
+        context.setVariable("company_building_number", adminConfig.getBuildingNumber());
+        context.setVariable("company_phone_number", adminConfig.getPhoneNumber());
         context.setVariable("goodbye", "Thank you for using our software.");
-        context.setVariable("show_button", false);
+        context.setVariable("show_button", true);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
 }
