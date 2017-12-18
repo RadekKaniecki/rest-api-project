@@ -39,4 +39,24 @@ public class EmailScheduler {
                 ""
         ));
     }
+
+//    @Scheduled(cron = "0 0 10 * * *")
+    @Scheduled(fixedDelay = 10000L)
+    public void sendScheduledEmailWithCardSize() {
+        long size = taskRepository.count();
+        String message;
+        if(size == 1) {
+            message = "Currently in database you got: " + size + " task.";
+        }else {
+            message = "Currently in database you got: " + size + " tasks.";
+        }
+
+        simpleEmailService.sendScheduledMail(new Mail(
+                adminConfig.getAdminMail(),
+                SUBJECT,
+                message,
+                ""
+        ));
+    }
+
 }
