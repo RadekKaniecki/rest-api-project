@@ -20,9 +20,6 @@ public class MailCreatorService {
     @Autowired
     private AdminConfig adminConfig;
 
-    @Autowired
-    private TaskRepository taskRepository;
-
     public String buildTrelloCardEmail(String message) {
 
         List<String> functionality = new ArrayList<>();
@@ -46,6 +43,7 @@ public class MailCreatorService {
         context.setVariable("application_functionality", functionality);
         return templateEngine.process("mail/created-trello-card-mail", context);
     }
+
 
     public String buildScheduledMailWithCardSize(String message) {
         Context context = new Context();
