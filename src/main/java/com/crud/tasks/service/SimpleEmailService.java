@@ -22,6 +22,7 @@ public class SimpleEmailService {
     @Autowired
     private MailCreatorService mailCreatorService;
 
+
     public void send(final Mail mail) {
         LOGGER.info("Starting email preparation...");
         try {
