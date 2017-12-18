@@ -40,8 +40,8 @@ public class EmailScheduler {
         ));
     }
 
-//    @Scheduled(cron = "0 0 10 * * *")
-    @Scheduled(fixedDelay = 10000L)
+    @Scheduled(cron = "0 0 10 * * *")
+//    @Scheduled(fixedDelay = 10000L)
     public void sendScheduledEmailWithCardSize() {
         long size = taskRepository.count();
         String message;
